@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tile Game</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div id="page-container">
+        <div id="app">
+            <div class="confetti-container">
+                <confetti :class="[{'confetti': playerWon}]" v-for="n in 500" :key='n'></confetti>
+            </div>
+
+            <div id="game-container">
+                <div id="tile-game">
+                    <div id="tile-container-outer">
+                        <div id="tile-container-inner">
+                            <div v-if="playerWon" class="layer">
+                                <p id="win-text">You Won!</p>
+                            </div>
+                            <tile-component class="tempClass" v-for="tile in tiles" :tile="tile" :key="tile.id"
+                                @is-adjacent="slideTile(tile)">
+                            </tile-component>
+                        </div>
+                    </div>
+                    <div>
+                        <p> Moves: {{ playerMoves }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
