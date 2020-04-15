@@ -85,35 +85,44 @@ p {
 }
 
 .tile-1 {
-    background: url('./happy-48398.png') no-repeat -400px 0;
+    background: url('./happy-48398.png') no-repeat top right;
+    background-size: 300%;
+
 }
 
 .tile-2 {
-    background: url('./happy-48398.png') no-repeat -400px -200px;
+    background: url('./happy-48398.png') no-repeat center right;
+    background-size: 300%;
 }
 
 .tile-3 {
-    background: url('./happy-48398.png') no-repeat -200px -400px;
+    background: url('./happy-48398.png') no-repeat bottom center;
+    background-size: 300%;
 }
 
 .tile-4 {
-    background: url('./happy-48398.png') no-repeat 0 -400px;
+    background: url('./happy-48398.png') no-repeat bottom left;
+    background-size: 300%;
 }
 
 .tile-5 {
-    background: url('./happy-48398.png') no-repeat 0 0;
+    background: url('./happy-48398.png') no-repeat top left;
+    background-size: 300%;
 }
 
 .tile-6 {
-    background: url('./happy-48398.png') no-repeat -200px -200px;
+    background: url('./happy-48398.png') no-repeat center center;
+    background-size: 300%;
 }
 
 .tile-7 {
-    background: url('./happy-48398.png') no-repeat 0 -200px;
+    background: url('./happy-48398.png') no-repeat center left;
+    background-size: 300%;
 }
 
 .tile-8 {
-    background: url('./happy-48398.png') no-repeat -200px 0;
+    background: url('./happy-48398.png') no-repeat top center;
+    background-size: 300%;
 }
 
 .row-1-col-1{
