@@ -8,7 +8,7 @@ window.onload = function () {
         props: ['tile'],
         template: `
             <div :class="['tile', 'tile-' + tile.id, 'row-' + (tile.row + 1) + '-col-' + (tile.col + 1)]" 
-            @click="$emit('is-adjacent')" draggable>
+            @click="$emit('is-adjacent')">
             </div>
             `,
         watch: {

@@ -23,7 +23,7 @@
                             <div v-if="playerWon" class="layer">
                                 <p id="win-text">You Won!</p>
                             </div>
-                            <tile-component class="tempClass" v-for="tile in tiles" :tile="tile" :key="tile.id"
+                            <tile-component v-for="tile in tiles" :tile="tile" :key="tile.id"
                                 @is-adjacent="slideTile(tile)">
                             </tile-component>
                         </div>
