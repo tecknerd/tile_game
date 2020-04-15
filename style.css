@@ -27,7 +27,6 @@ p {
 }
 
 #game-container {
-    /* width: 650px; */
     width: 65vw;
     max-width: 650px;
     height: 100vh;
@@ -37,8 +36,6 @@ p {
 }
 
 #tile-container-outer {
-    /* width: 624px;
-    height: 624px; */
     width: 62vw;
     max-width: 624px;
     height: 62vw;
@@ -50,8 +47,6 @@ p {
 }
 
 #tile-container-inner {
-    /* width: 604px;
-    height: 604px; */
     width: 60vw;
     max-width: 604px;
     height: 60vw;
@@ -60,8 +55,6 @@ p {
     border: 2px solid black;
     position: relative;
     top: 1%;
-    /* top: 8px;
-    left: 8px; */
     margin: auto;
     
     display: grid;
@@ -83,8 +76,6 @@ p {
 }
 
 .tile{
-    /* width: 200px;
-    height: 200px; */
     width: 100%;
     height: 100%;
     background-color: white;
