@@ -182,7 +182,7 @@ p {
 .confetti {
     width: 10px;
     height: 10px;
-    background-color: #f2d74e;
+    background-color: rgb(242, 215, 78);
     position: absolute;
     top: -10%;
     left: 50%;
@@ -191,67 +191,65 @@ p {
     z-index: 1;
 }
 .confetti:nth-child(1) {
-    background-color: #f2d74e;
+    background-color: rgb(242, 215, 78);
     top: -10%;
     left: 10%;
     animation-delay: 1s;
 }
 .confetti:nth-child(2n) {
-    background-color: #95c3de;
+    background-color: rgb(77, 182, 243);
     top: -10%;
     left: 20%;
     animation-delay: 5s;
 }
 .confetti:nth-child(3n+3) {
-    background-color: #ff9a91;
+    background-color: rgba(40, 246, 47, 1);
     top: -10%;
     left: 30%;
     animation-delay: 3s;
 }
 .confetti:nth-child(4n + 4) {
-    background-color: #f2d74e; 
+    background-color: rgb(213, 78, 242); 
     top: -10%;
     left: 40%; 
     animation-delay: 2.5s;
 }
 .confetti:nth-child(5n + 5) {
-    background-color: #95c3de; 
+    background-color: rgb(77, 182, 243); 
     top: -10%;
     left: 50%; 
     animation-delay: 4s;
 }
 .confetti:nth-child(6n + 6) {
-    background-color: #ff9a91; 
+    background-color: rgba(40, 246, 47, 1); 
     top: -10%;
     left: 60%; 
     animation-delay: 6s;
 }
 .confetti:nth-child(7n + 7) {
-    background-color: #f2d74e; 
+    background-color: rgb(242, 215, 78); 
     top: -10%;
     left: 70%; 
     animation-delay: 1.5s;
 }
 .confetti:nth-child(8n + 8) {
-    background-color: #95c3de; 
+    background-color: rgb(77, 182, 243); 
     top: -10%;
     left: 80%; 
     animation-delay: 2s;
 }
 .confetti:nth-child(9n + 9) {
-    background-color: #ff9a91; 
+    background-color: rgba(40, 246, 47, 1);
     top: -10%;
     left: 90%; 
     animation-delay: 3.5s;
 }
 .confetti:nth-child(10n + 10) {
-    background-color: #f2d74e; 
+    background-color: rgb(213, 78, 242); 
     top: -10%;
     left: 100%; 
     animation-delay: 2.5s;
 }
-
-
 
 /****Keyframes/Animations****/
 
