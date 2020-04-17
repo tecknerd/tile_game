@@ -188,6 +188,25 @@ p {
     grid-column-end: 4;
 }
 
+.timer-danger {
+    color: red;
+}
+
+.timer-warning {
+    color: yellow;
+}
+
+.timer-normal {
+    color:rgba(20, 159, 20, 1);
+}
+
+.timer {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
 .confetti-container {
     width: 100%;
     height: 100%;
