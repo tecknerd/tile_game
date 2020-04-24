@@ -8,6 +8,8 @@ window.onload = function () {
         data() {
             return {
                 counterInSeconds: this.seconds,
+                warningInSeconds: this.warningTime,
+                dangerInSeconds: this.dangerTime,
                 counterRunning: false,
                 timerID: -1,
                 noWarning: true,
@@ -17,7 +19,16 @@ window.onload = function () {
         },
         props: {
             'seconds': {
+                type: Number,
                 default: 60
+            },
+            'warningTime': {
+                type: Number,
+                default: 30
+            },
+            'dangerTime': {
+                type: Number,
+                default: 10
             },
             'run': {
                 type: Boolean,
@@ -47,7 +58,10 @@ window.onload = function () {
             startTimer: function () {
                 if (!this.counterRunning) {
                     this.timerID = setInterval(this.reduceTime, 1000);
-                    setTimeout(() => { clearInterval(this.timerID); }, (this.seconds * 1000));
+                    setTimeout(() => {
+                        clearInterval(this.timerID);
+                        this.$emit('out-of-time', true);
+                    }, (this.seconds * 1000));
 
                     this.counterRunning = true;
                 }
@@ -70,12 +84,12 @@ window.onload = function () {
             counterInSeconds: function () {
 
                 switch (this.counterInSeconds) {
-                    case 30:
+                    case this.warningInSeconds:
                         this.warning = true;
                         this.noWarning = false;
                         this.dangerZone = false;
                         break;
-                    case 10:
+                    case this.dangerInSeconds:
                         this.dangerZone = true;
                         this.warning = false;
                         this.noWarning = false;
@@ -85,6 +99,8 @@ window.onload = function () {
         }
     });
 
+
+    //TODO: Implement
     Vue.component('high-scores', {
         template: `<div></div>`
     });
@@ -160,6 +176,7 @@ window.onload = function () {
                 [-1, -1, -1]
             ],
             playerWon: false,
+            playerLoss: false,
             playerMoves: 0,
             gameRunning: false
         },
@@ -181,7 +198,7 @@ window.onload = function () {
                     this.playerMoves++;
 
                     //  Vue cannot detect array changes such as arr[i][j] = x so I made 
-                    //  checkAnswer a method and call it  instead of a watch or compute
+                    //  checkAnswer a method and call it instead of a watch or compute
                     this.checkAnswer();
                 }
             },

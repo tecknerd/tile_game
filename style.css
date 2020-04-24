@@ -2,9 +2,14 @@
     box-sizing: border-box;
 }
 
+:root {
+	--image-url: url("https://gitlab.com/tecknerd/tile_game/-/raw/master/happy-48398.png");
+}
+
 html, body, #page-container {
     width: 100vw;
     height: 100vh;
+    margin: 0;
     background-color: rgb(248, 168, 159);
     overflow: hidden;
 }
@@ -36,10 +41,10 @@ p {
 }
 
 #tile-container-outer {
-    width: 62vw;
-    max-width: 624px;
-    height: 62vw;
-    max-height: 624px;
+    width: 58vw;
+    max-width: 604px;
+    height: 58vw;
+    max-height: 604px;
     background-color: rgb(26, 197, 197);
     border: 2px solid black;
     border-radius: 20px;
@@ -47,14 +52,14 @@ p {
 }
 
 #tile-container-inner {
-    width: 60vw;
-    max-width: 604px;
-    height: 60vw;
-    max-height: 604px;
+    width: 55vw;
+    max-width: 584px;
+    height: 55vw;
+    max-height: 584px;
     background-color: rgb(198, 200, 202);
     border: 2px solid black;
     position: relative;
-    top: 1%;
+    top: 1.35%;
     margin: auto;
     
     display: grid;
@@ -71,8 +76,16 @@ p {
     top: 0;
     left: 0;
     opacity: 0.8;
-    background-color: white;
     animation: fadeIn 2s linear;
+}
+
+.win {
+    background-color: white;
+}
+
+.lose {
+    background-color: gray;
+    color:white;
 }
 
 .tile{
@@ -85,43 +98,43 @@ p {
 }
 
 .tile-1 {
-    background: url('./happy-48398.png') no-repeat top right;
+    background: var(--image-url) no-repeat top right;
     background-size: 300%;
 
 }
 
 .tile-2 {
-    background: url('./happy-48398.png') no-repeat center right;
+    background: var(--image-url) no-repeat center right;
     background-size: 300%;
 }
 
 .tile-3 {
-    background: url('./happy-48398.png') no-repeat bottom center;
+    background: var(--image-url) no-repeat bottom center;
     background-size: 300%;
 }
 
 .tile-4 {
-    background: url('./happy-48398.png') no-repeat bottom left;
+    background: var(--image-url) no-repeat bottom left;
     background-size: 300%;
 }
 
 .tile-5 {
-    background: url('./happy-48398.png') no-repeat top left;
+    background: var(--image-url) no-repeat top left;
     background-size: 300%;
 }
 
 .tile-6 {
-    background: url('./happy-48398.png') no-repeat center center;
+    background: var(--image-url) no-repeat center center;
     background-size: 300%;
 }
 
 .tile-7 {
-    background: url('./happy-48398.png') no-repeat center left;
+    background: var(--image-url) no-repeat center left;
     background-size: 300%;
 }
 
 .tile-8 {
-    background: url('./happy-48398.png') no-repeat top center;
+    background: var(--image-url) no-repeat top center;
     background-size: 300%;
 }
 
