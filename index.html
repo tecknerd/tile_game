@@ -18,13 +18,19 @@
 
             <div id="game-container">
                 <div id="tile-game">
+                    <countdown-timer :seconds='120' :run="gameRunning" @out-of-time="playerLoss=$event">
+                    </countdown-timer>
                     <div id="tile-container-outer">
                         <div id="tile-container-inner">
-                            <div v-if="playerWon" class="layer">
+                            <div v-if="playerWon" class="layer win">
                                 <p id="win-text">You Won!</p>
                             </div>
-                            <tile-component class="tempClass" v-for="tile in tiles" :tile="tile" :key="tile.id"
-                                @is-adjacent="slideTile(tile)">
+                            <div v-if="playerLoss" class="layer lose">
+                                <p>Time is up.</p>
+                                <p>Game Over.</p>
+                            </div>
+                            <tile-component v-for="tile in tiles" :tile="tile" :key="tile.id"
+                                @is-adjacent="slideTile(tile);">
                             </tile-component>
                         </div>
                     </div>

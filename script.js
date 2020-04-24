@@ -4,23 +4,115 @@ window.onload = function () {
         template: '<div></div>'
     });
 
+    Vue.component('countdown-timer', {
+        data() {
+            return {
+                counterInSeconds: this.seconds,
+                warningInSeconds: this.warningTime,
+                dangerInSeconds: this.dangerTime,
+                counterRunning: false,
+                timerID: -1,
+                noWarning: true,
+                warning: false,
+                dangerZone: false
+            };
+        },
+        props: {
+            'seconds': {
+                type: Number,
+                default: 60
+            },
+            'warningTime': {
+                type: Number,
+                default: 30
+            },
+            'dangerTime': {
+                type: Number,
+                default: 10
+            },
+            'run': {
+                type: Boolean,
+                default: false
+            }
+            ,
+        },
+        template: `<div :class="[
+                    'timer',
+                    {'timer-danger': dangerZone},
+                    {'timer-warning': warning},
+                    {'timer-normal': noWarning}, 
+                    ]">
+                        {{ this.getTime() }}
+                </div>`,
+        methods: {
+            getTime: function () {
+                let minutes = Math.floor(this.counterInSeconds / 60);
+                let seconds = this.counterInSeconds % 60;
+                if (seconds < 10) {
+                    seconds = "0" + seconds;
+                }
+
+                return minutes + ":" + seconds;
+            },
+
+            startTimer: function () {
+                if (!this.counterRunning) {
+                    this.timerID = setInterval(this.reduceTime, 1000);
+                    setTimeout(() => {
+                        clearInterval(this.timerID);
+                        this.$emit('out-of-time', true);
+                    }, (this.seconds * 1000));
+
+                    this.counterRunning = true;
+                }
+            },
+
+            stopTimer: function () {
+                clearInterval(this.timerID);
+            },
+
+            reduceTime: function () {
+                this.counterInSeconds--;
+            }
+        },
+
+        watch: {
+            run: function (newVal, oldVal) {
+                (newVal) ? this.startTimer() : this.stopTimer();
+            },
+
+            counterInSeconds: function () {
+
+                switch (this.counterInSeconds) {
+                    case this.warningInSeconds:
+                        this.warning = true;
+                        this.noWarning = false;
+                        this.dangerZone = false;
+                        break;
+                    case this.dangerInSeconds:
+                        this.dangerZone = true;
+                        this.warning = false;
+                        this.noWarning = false;
+                        break;
+                }
+            }
+        }
+    });
+
+
+    //TODO: Implement
+    Vue.component('high-scores', {
+        template: `<div></div>`
+    });
+
     Vue.component('tile-component', {
         props: ['tile'],
         template: `
+            <!--The classes  change dynamically, so they change along with the tile rows and columns-->
             <div :class="['tile', 'tile-' + tile.id, 'row-' + (tile.row + 1) + '-col-' + (tile.col + 1)]" 
-            @click="$emit('is-adjacent')" draggable>
+            @click="$emit('is-adjacent')">
             </div>
-            `,
-        watch: {
-            'tile.row': function (newVal, oldVal) {
-                this.class = 'row-' + (newVal + 1) + '-col-' + (this.tile.col + 1);
-
-            },
-
-            'tile.col': function (newVal, oldVal) {
-                this.class = 'row-' + (this.tile.row + 1) + '-col-' + (newVal + 1);
-            }
-        }
+            `
     });
 
     new Vue({
@@ -84,7 +176,9 @@ window.onload = function () {
                 [-1, -1, -1]
             ],
             playerWon: false,
-            playerMoves: 0
+            playerLoss: false,
+            playerMoves: 0,
+            gameRunning: false
         },
         methods: {
             isAdjacent: function (row, col) {
@@ -92,7 +186,11 @@ window.onload = function () {
             },
 
             slideTile: function (tile) {
-                if (this.isAdjacent(tile.row, tile.col) && !this.playerWon) {
+                if (this.isAdjacent(tile.row, tile.col)) {
+                    if (!this.gameRunning) {
+                        this.gameRunning = true;
+                    }
+
                     [tile.row, tile.col, this.emptySlot.row, this.emptySlot.col] =
                         [this.emptySlot.row, this.emptySlot.col, tile.row, tile.col];
                     this.userAnswer[tile.row][tile.col] = tile.id;
@@ -100,7 +198,7 @@ window.onload = function () {
                     this.playerMoves++;
 
                     //  Vue cannot detect array changes such as arr[i][j] = x so I made 
-                    //  checkAnswer a method and call it  instead of a watch or compute
+                    //  checkAnswer a method and call it instead of a watch or compute
                     this.checkAnswer();
                 }
             },
@@ -114,6 +212,7 @@ window.onload = function () {
                     }
                 }
 
+                this.gameRunning = false;
                 this.playerWon = true;
             }
         },
